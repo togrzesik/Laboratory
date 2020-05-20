@@ -29,5 +29,5 @@ INSERT INTO product VALUES (1, 'Mąka ziemniaczana','5900766000281', 500, 'g' );
 INSERT INTO product VALUES (2, 'Filet z Kurczaka','5900766000000', 1, 'szt' );
 INSERT INTO product VALUES (3, 'Ryż biały','5900977008779',4, 'woreczki' );
 
-
-/*INSERT INTO movies VALUES (1, 'Piraci z Krzemowej Doliny', 'http://1.fwcdn.pl/po/30/02/33002/6988507.6.jpg',2000); */
+INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/jajka_w_pomidorach_01-1.jpg',
+                        'Przygotować pomidory: sparzyć, obrać ze skórki, pokroić na ćwiartki, wykroić szypułki, miąższ pokroić w kosteczkę. Na niedużą patelnię (około 20 cm średnicy) włożyć masło lub wlać oliwę oraz starty czosnek, chwilę podsmażyć. Pomidory włożyć na patelnię, doprawić solą, pieprzem i przyprawami. Wymieszać i intensywnie smażyć na większym ogniu przez około 4 minuty, już bez mieszania (wówczas pomidory odparują i zachowają swoją strukturę, jeśli będziemy mieszać zrobi się przecier). Do podsmażonych pomidorów wbić jajka, doprawić solą. Przykryć i gotować przez około 3 minuty lub do czasu aż białka jajek będą ścięte. Podawać ze świeżą bazylią i bagietką.');
