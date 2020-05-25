@@ -1,16 +1,39 @@
-DROP TABLE IF EXISTS movies;
-
-CREATE TABLE movies (
-	movie_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(100),
-	image VARCHAR(300),
-	year Integer(8)
-);
-
-INSERT INTO movies VALUES (1, 'Piraci z Krzemowej Doliny', 'http://1.fwcdn.pl/po/30/02/33002/6988507.6.jpg',2000);
-INSERT INTO movies VALUES (2, 'Ja, robot', 'http://1.fwcdn.pl/po/54/92/95492/6918828.2.jpg',1999);
-INSERT INTO movies VALUES (3, 'Kod nieśmiertelności', 'http://1.fwcdn.pl/po/89/67/418967/7485520.2.jpg',2020);
-INSERT INTO movies VALUES (4, 'Ex Machina', 'http://1.fwcdn.pl/po/64/19/686419/7703095.2.jpg',2006);
-INSERT INTO movies VALUES (5, 'Hakerzy', 'http://1.fwcdn.pl/po/59/98/5998/7209965.6.jpg',2009);
-INSERT INTO movies VALUES (6, 'Tron', 'http://1.fwcdn.pl/po/12/03/11203/7708420.6.jpg',2012);
-INSERT INTO movies VALUES (7, 'Tron: Dziedzictwo', 'http://1.fwcdn.pl/po/74/78/487478/7335687.2.jpg',2014);
+-- DROP TABLE IF EXISTS recepie;
+-- DROP TABLE IF EXISTS product;
+-- DROP TABLE IF EXISTS recepie_products;
+--
+-- CREATE TABLE recepie (
+-- 	recepie_id INTEGER(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+-- 	name VARCHAR(100),
+-- 	image VARCHAR(300),
+-- 	description VARCHAR(4096)
+-- );
+--
+-- CREATE TABLE product (
+--     product_id INTEGER(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR (100),
+--     barcode VARCHAR(32),
+--     amount INTEGER(10),
+--     unit VARCHAR(15)
+-- );
+--
+-- CREATE TABLE recepie_products(
+--     recepie_id INTEGER(6) ,
+--     product_id INTEGER(6) ,
+--     amount INTEGER(10),
+-- );
+--
+-- ALTER TABLE recepie_products ADD CONSTRAINT recepie_id  FOREIGN KEY (recepie_id) REFERENCES recepie(recepie_id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ALTER TABLE recepie_products ADD CONSTRAINT product_id  FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+--
+-- INSERT INTO product VALUES (1, 'Mąka ziemniaczana','5900766000281', 500, 'g' );
+-- INSERT INTO product VALUES (2, 'Jajko','5900766000000', 1, 'szt' );
+-- INSERT INTO product VALUES (3, 'Pomidor','5900766000001', 1, 'szt' );
+-- INSERT INTO product VALUES (4, 'Ryż biały','5900977008779',4, 'woreczki' );
+--
+-- INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/jajka_w_pomidorach_01-1.jpg',
+--                         'Przygotować pomidory: sparzyć, obrać ze skórki, pokroić na ćwiartki, wykroić szypułki, miąższ pokroić w kosteczkę. Na niedużą patelnię (około 20 cm średnicy) włożyć masło lub wlać oliwę oraz starty czosnek, chwilę podsmażyć. Pomidory włożyć na patelnię, doprawić solą, pieprzem i przyprawami. Wymieszać i intensywnie smażyć na większym ogniu przez około 4 minuty, już bez mieszania (wówczas pomidory odparują i zachowają swoją strukturę, jeśli będziemy mieszać zrobi się przecier). Do podsmażonych pomidorów wbić jajka, doprawić solą. Przykryć i gotować przez około 3 minuty lub do czasu aż białka jajek będą ścięte. Podawać ze świeżą bazylią i bagietką.');
+--
+--
+-- INSERT INTO recepie_products VALUES(1,2,3);
+-- INSERT INTO recepie_products VALUES(1,3,1);
