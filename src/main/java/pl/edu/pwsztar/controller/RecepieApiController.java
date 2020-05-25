@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pwsztar.domain.dto.ProductDto;
+import pl.edu.pwsztar.domain.dto.CreateRecepieDto;
 import pl.edu.pwsztar.domain.dto.RecepieDto;
 import pl.edu.pwsztar.service.RecepieService;
 
@@ -20,6 +20,7 @@ public class RecepieApiController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductApiController.class);
 
     private final RecepieService recepieService;
+
 
     @Autowired
     public RecepieApiController(RecepieService recepieService) {
@@ -41,5 +42,13 @@ public class RecepieApiController {
         recepieService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
 
+    }
+
+    @CrossOrigin
+    @PostMapping(value="/recepies/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> createRecepie(@RequestBody CreateRecepieDto createRecepieDto){
+        LOGGER.info("Create recepie:{}", createRecepieDto);
+        recepieService.save(createRecepieDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

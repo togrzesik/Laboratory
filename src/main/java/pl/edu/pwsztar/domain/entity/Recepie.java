@@ -2,10 +2,11 @@ package pl.edu.pwsztar.domain.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "recepie")
-public class Recepie {
+public class Recepie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class Recepie {
     @Column(name="description")
     private String description;
 
-    Recepie(){
+    public Recepie(){
 
     }
 
