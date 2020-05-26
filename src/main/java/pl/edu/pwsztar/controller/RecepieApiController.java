@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping(value="/api")
 public class RecepieApiController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductApiController.class);
-
     private final RecepieService recepieService;
 
 
