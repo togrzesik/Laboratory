@@ -1,7 +1,5 @@
 package pl.edu.pwsztar.domain.dto;
 
-import javafx.util.Builder;
-
 public class RecepieDto {
 
     private Long recepieId;
