@@ -5,9 +5,6 @@ import pl.edu.pwsztar.domain.converter.Converter;
 import pl.edu.pwsztar.domain.dto.RecepieDto;
 import pl.edu.pwsztar.domain.entity.Recepie;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class RecepieMapper implements Converter<Recepie,RecepieDto> {
     @Override

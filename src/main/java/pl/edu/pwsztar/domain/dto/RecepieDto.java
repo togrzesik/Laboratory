@@ -18,7 +18,7 @@ public class RecepieDto {
         this.description = builder.description;
     }
 
-    public Long getProductId() {
+    public Long getRecepieId() {
         return recepieId;
     }
 

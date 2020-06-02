@@ -16,7 +16,7 @@ public class SimpleRecepieDto {
         this.image = builder.image;
     }
 
-    public Long getProductId() {
+    public Long getRecepieId() {
         return recepieId;
     }
 

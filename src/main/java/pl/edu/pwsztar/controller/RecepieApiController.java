@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value="/api")
 public class RecepieApiController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductApiController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecepieApiController.class);
     private final RecepieService recepieService;
 
 
