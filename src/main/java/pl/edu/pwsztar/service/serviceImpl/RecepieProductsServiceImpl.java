@@ -1,5 +1,6 @@
 package pl.edu.pwsztar.service.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pwsztar.domain.dto.RecepieProductsDto;
 import pl.edu.pwsztar.domain.mapper.RecepieProductsListMapper;
@@ -14,6 +15,7 @@ public class RecepieProductsServiceImpl implements RecepieProductsService {
     private final RecepieProductsRepository recepieProductsRepository;
     private final RecepieProductsListMapper recepieProductsListMapper;
 
+    @Autowired
     public RecepieProductsServiceImpl(RecepieProductsRepository recepieProductsRepository,
                                       RecepieProductsListMapper recepieProductsListMapper) {
         this.recepieProductsRepository = recepieProductsRepository;

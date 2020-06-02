@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.CreateRecepieDto;
 import pl.edu.pwsztar.domain.dto.RecepieDto;
+import pl.edu.pwsztar.domain.dto.SimpleRecepieDto;
 import pl.edu.pwsztar.service.RecepieService;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public class RecepieApiController {
 
     @CrossOrigin
     @GetMapping(value="/recepies",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<RecepieDto>> getRecepies(){
+    public ResponseEntity<List<SimpleRecepieDto>> getRecepies(){
         LOGGER.info("find all recepies");
-        List<RecepieDto> recepieDto = recepieService.findAll();
-        return new ResponseEntity<>(recepieDto, HttpStatus.OK);
+        List<SimpleRecepieDto> simpleRecepieDto = recepieService.getSimpleRecepies();
+        return new ResponseEntity<>(simpleRecepieDto, HttpStatus.OK);
     }
 
     @CrossOrigin
