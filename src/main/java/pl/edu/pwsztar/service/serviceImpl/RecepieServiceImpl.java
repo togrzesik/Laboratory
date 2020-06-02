@@ -10,6 +10,7 @@ import pl.edu.pwsztar.domain.dto.SimpleRecepieDto;
 import pl.edu.pwsztar.domain.entity.Recepie;
 import pl.edu.pwsztar.domain.mapper.CreateRecepieMapper;
 import pl.edu.pwsztar.domain.mapper.RecepieListMapper;
+import pl.edu.pwsztar.domain.mapper.RecepieMapper;
 import pl.edu.pwsztar.domain.mapper.SimpleRecepieListMapper;
 import pl.edu.pwsztar.domain.repository.RecepieRepository;
 import pl.edu.pwsztar.service.RecepieService;
@@ -25,24 +26,26 @@ public class RecepieServiceImpl implements RecepieService {
     private final RecepieListMapper recepieListMapper;
     private final CreateRecepieMapper createRecepieMapper;
     private final SimpleRecepieListMapper simpleRecepieListMapper;
+    private final RecepieMapper recepieMapper;
 
 
     @Autowired
     public RecepieServiceImpl(RecepieRepository recepieRepository,
                               RecepieListMapper recepieListMapper,
                               CreateRecepieMapper createRecepieMapper,
-                              SimpleRecepieListMapper simpleRecepieListMapper) {
+                              SimpleRecepieListMapper simpleRecepieListMapper,
+                              RecepieMapper recepieMapper) {
         this.recepieRepository = recepieRepository;
         this.recepieListMapper = recepieListMapper;
         this.createRecepieMapper = createRecepieMapper;
         this.simpleRecepieListMapper = simpleRecepieListMapper;
+        this.recepieMapper = recepieMapper;
     }
 
 
     @Override
-    public List<RecepieDto> findAll() {
-        List<Recepie> recepies = recepieRepository.findAll();
-        return recepieListMapper.convert(recepies);
+    public RecepieDto getRecepieDetails(Long recepieId) {
+        return recepieMapper.convert(recepieRepository.getRecepieDetails(recepieId));
     }
 
     @Override

@@ -36,6 +36,14 @@ public class RecepieApiController {
     }
 
     @CrossOrigin
+    @GetMapping(value="/recepies/{recepieId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<RecepieDto> getRecepieDetails(@PathVariable Long recepieId){
+        LOGGER.info("Fing recepie details:{} ", recepieId);
+        RecepieDto recepieDto = recepieService.getRecepieDetails(recepieId);
+        return new ResponseEntity<>(recepieDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @DeleteMapping(value="/recepies/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> deleteRecepie(@PathVariable Long id){
         LOGGER.info("Delete recepie");
