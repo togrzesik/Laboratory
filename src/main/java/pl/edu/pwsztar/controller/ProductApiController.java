@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.CreateProductDto;
 import pl.edu.pwsztar.domain.dto.ProductDto;
+import pl.edu.pwsztar.domain.entity.Product;
 import pl.edu.pwsztar.service.ProductService;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class ProductApiController {
         LOGGER.info("find all products");
 
         List<ProductDto> productDto = productService.findAll();
+        return new ResponseEntity<>(productDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value="/products/{productId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ProductDto> getProductDetails(@PathVariable Long productId){
+        LOGGER.info("Getting single product details");
+        ProductDto productDto = productService.getRequiredProductDetails(productId);
         return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
 

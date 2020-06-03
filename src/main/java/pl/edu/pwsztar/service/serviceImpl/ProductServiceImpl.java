@@ -9,6 +9,7 @@ import pl.edu.pwsztar.domain.dto.ProductDto;
 import pl.edu.pwsztar.domain.entity.Product;
 import pl.edu.pwsztar.domain.mapper.CreateProductMapper;
 import pl.edu.pwsztar.domain.mapper.ProductListMapper;
+import pl.edu.pwsztar.domain.mapper.ProductMapper;
 import pl.edu.pwsztar.domain.repository.ProductRepository;
 import pl.edu.pwsztar.service.ProductService;
 import java.util.List;
@@ -21,15 +22,18 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductListMapper productListMapper;
     private final CreateProductMapper createProductMapper;
+    private final ProductMapper productMapper;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository,
                               ProductListMapper productListMapper,
-                              CreateProductMapper createProductMapper) {
+                              CreateProductMapper createProductMapper,
+                              ProductMapper productMapper) {
 
         this.productRepository = productRepository;
         this.productListMapper = productListMapper;
         this.createProductMapper = createProductMapper;
+        this.productMapper = productMapper;
     }
 
     @Override
@@ -46,6 +50,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteById(Long id){
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public ProductDto getRequiredProductDetails(Long productId) {
+        return productMapper.convert(productRepository.getRequiredProductDetails(productId));
     }
 
 }
