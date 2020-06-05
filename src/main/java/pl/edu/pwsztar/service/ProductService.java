@@ -12,4 +12,5 @@ public interface ProductService {
     void save(CreateProductDto createProductDto);
     void deleteById(Long id);
     ProductDto getRequiredProductDetails(Long productId);
+    ProductDto getProductFromBarcode(String barcode);
 }

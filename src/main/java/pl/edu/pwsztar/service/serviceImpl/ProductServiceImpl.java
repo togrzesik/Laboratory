@@ -57,4 +57,9 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.convert(productRepository.getRequiredProductDetails(productId));
     }
 
+    @Override
+    public ProductDto getProductFromBarcode(String barcode) {
+        return productMapper.convert(productRepository.getProductFromBarcode(barcode));
+    }
+
 }

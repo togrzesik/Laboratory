@@ -46,15 +46,23 @@ public class ProductApiController {
     }
 
     @CrossOrigin
+    @GetMapping(value="/products/{barcode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ProductDto> getProductDetailsBarcode(@PathVariable String barcode){
+        LOGGER.info("Getting single product details from barcode");
+        ProductDto productDto = productService.getProductFromBarcode(barcode);
+        return new ResponseEntity<>(productDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @PostMapping(value = "/products", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> addProduct(@RequestBody CreateProductDto createProductDto) {
         LOGGER.info("create product: {}", createProductDto);
         productService.save(createProductDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/products/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping(value = "/products/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         LOGGER.info("delete product: {}", id);
 
