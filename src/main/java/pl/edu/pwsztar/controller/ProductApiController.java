@@ -46,7 +46,7 @@ public class ProductApiController {
     }
 
     @CrossOrigin
-    @GetMapping(value="/products/{barcode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/products/barcode/{barcode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDto> getProductDetailsBarcode(@PathVariable String barcode){
         LOGGER.info("Getting single product details from barcode");
         ProductDto productDto = productService.getProductFromBarcode(barcode);
