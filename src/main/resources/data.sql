@@ -30,7 +30,7 @@ CREATE TABLE recepie_products(
 INSERT INTO product VALUES (1, 'Mąka ziemniaczana','5900766000281', 500, 'g' );
 INSERT INTO product VALUES (2, 'Jajko','5900766000000', 1, 'szt.' );
 INSERT INTO product VALUES (3, 'Pomidor','5900766000001', 1, 'szt.' );
-INSERT INTO product VALUES (4, 'Ryż biały','5900977008779',4, 'paczk.' );
+INSERT INTO product VALUES (4, 'Ryż biały','5902481010941',4, 'paczk.' );
 INSERT INTO product VALUES (5, 'Czosnek','5900977009534',1, 'ząb.' );
 
 INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/jajka_w_pomidorach_01-1.jpg',
@@ -39,6 +39,6 @@ INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v1
 
 INSERT INTO recepie_products VALUES(1,1,2,3);
 INSERT INTO recepie_products VALUES(2,1,3,1);
-INSERT INTO recepie_products VALUES(3,1,4,1);
+INSERT INTO recepie_products VALUES(3,1,5,1);
 
 INSERT INTO recepie_products VALUES(3,2,1,0.6);
