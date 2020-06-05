@@ -13,6 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, CrudRep
         @Query(value = "SELECT * FROM Product p WHERE p.product_id = :productId ", nativeQuery = true)
         Product getRequiredProductDetails(@Param("productId") Long productId);
 
-        @Query(value = "SELECT * FROM Product p WHERE p.barccode LIKE(:barcode) ", nativeQuery = true)
+        @Query(value = "SELECT * FROM Product p WHERE p.barcode LIKE(:barcode) ", nativeQuery = true)
         Product getProductFromBarcode(@Param("barcode") String barcode);
 }
