@@ -54,7 +54,7 @@ public class ProductApiController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/products", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/products/create",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> addProduct(@RequestBody CreateProductDto createProductDto) {
         LOGGER.info("create product: {}", createProductDto);
         productService.save(createProductDto);
