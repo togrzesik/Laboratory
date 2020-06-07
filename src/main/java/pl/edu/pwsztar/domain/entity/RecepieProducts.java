@@ -1,10 +1,11 @@
 package pl.edu.pwsztar.domain.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="recepie_products")
-public class RecepieProducts {
+public class RecepieProducts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
