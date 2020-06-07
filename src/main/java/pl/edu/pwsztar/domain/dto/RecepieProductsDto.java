@@ -5,7 +5,7 @@ public class RecepieProductsDto {
     private Long id;
     private Long recepieId;
     private Long productId;
-    private int amount;
+    private float amount;
 
     public RecepieProductsDto() {
     }
@@ -29,7 +29,7 @@ public class RecepieProductsDto {
         return productId;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -37,7 +37,7 @@ public class RecepieProductsDto {
         private Long id;
         private Long recepieId;
         private Long productId;
-        private int amount;
+        private float amount;
 
         public Builder(){
 
@@ -58,7 +58,7 @@ public class RecepieProductsDto {
             return this;
         }
 
-        public Builder amount(int amount){
+        public Builder amount(float amount){
             this.amount = amount;
             return this;
         }

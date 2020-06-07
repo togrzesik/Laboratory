@@ -4,7 +4,7 @@ public class CreateRecepieProductsDto {
 
     private Long recepieId;
     private Long productId;
-    private int amount;
+    private float amount;
 
     public CreateRecepieProductsDto(){
 
@@ -18,7 +18,7 @@ public class CreateRecepieProductsDto {
         return productId;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 

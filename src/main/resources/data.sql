@@ -21,7 +21,7 @@ CREATE TABLE recepie_products(
     id INTEGER (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     recepie_id INTEGER(6),
     product_id INTEGER(6),
-    amount INTEGER(10)
+    amount FLOAT(10)
 );
 
 -- ALTER TABLE recepie_products ADD CONSTRAINT recepie_id  FOREIGN KEY (recepie_id) REFERENCES recepie(recepie_id) ON DELETE NO ACTION ON UPDATE NO ACTION;

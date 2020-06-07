@@ -19,7 +19,7 @@ public class RecepieProducts implements Serializable {
     private Long productId;
 
     @Column(name="amount")
-    private int amount;
+    private float amount;
 
     public RecepieProducts() {
     }
@@ -36,7 +36,7 @@ public class RecepieProducts implements Serializable {
         return productId;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -52,7 +52,7 @@ public class RecepieProducts implements Serializable {
         this.productId = productId;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 }
