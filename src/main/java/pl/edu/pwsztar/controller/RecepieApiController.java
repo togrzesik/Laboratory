@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.CreateRecepieDto;
+import pl.edu.pwsztar.domain.dto.ProductDto;
 import pl.edu.pwsztar.domain.dto.RecepieDto;
 import pl.edu.pwsztar.domain.dto.SimpleRecepieDto;
 import pl.edu.pwsztar.service.RecepieService;
@@ -58,5 +59,14 @@ public class RecepieApiController {
         LOGGER.info("Create recepie:{}", createRecepieDto);
         recepieService.save(createRecepieDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="/recepies/filter", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<SimpleRecepieDto>> filterRecepie(@RequestBody List<ProductDto> productDtoList){
+        LOGGER.info("Filtering recepies{}", productDtoList.toString());
+        List<SimpleRecepieDto> simpleRecepieDtoList = recepieService.filterRecepies(productDtoList);
+
+        return new ResponseEntity<>( simpleRecepieDtoList, HttpStatus.OK);
     }
 }
