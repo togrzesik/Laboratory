@@ -53,10 +53,10 @@ public class RecepieApiController {
     }
 
     @CrossOrigin
-    @PostMapping(value="/recepies/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value="/recepies/create",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> createRecepie(@RequestBody CreateRecepieDto createRecepieDto){
         LOGGER.info("Create recepie:{}", createRecepieDto);
         recepieService.save(createRecepieDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
