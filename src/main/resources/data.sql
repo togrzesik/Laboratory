@@ -18,7 +18,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE recepie_products(
-    id INTEGER (6),
+    id INTEGER (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     recepie_id INTEGER(6) ,
     product_id INTEGER(6) ,
     amount INTEGER(10)
