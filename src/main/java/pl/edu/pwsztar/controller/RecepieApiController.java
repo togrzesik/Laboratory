@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.CreateRecepieDto;
+import pl.edu.pwsztar.domain.dto.ProductDto;
 import pl.edu.pwsztar.domain.dto.RecepieDto;
+import pl.edu.pwsztar.domain.dto.SimpleRecepieDto;
 import pl.edu.pwsztar.service.RecepieService;
 
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value="/api")
 public class RecepieApiController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductApiController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecepieApiController.class);
     private final RecepieService recepieService;
 
 
@@ -28,9 +30,17 @@ public class RecepieApiController {
 
     @CrossOrigin
     @GetMapping(value="/recepies",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<RecepieDto>> getRecepies(){
+    public ResponseEntity<List<SimpleRecepieDto>> getRecepies(){
         LOGGER.info("find all recepies");
-        List<RecepieDto> recepieDto = recepieService.findAll();
+        List<SimpleRecepieDto> simpleRecepieDto = recepieService.getSimpleRecepies();
+        return new ResponseEntity<>(simpleRecepieDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value="/recepies/{recepieId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<RecepieDto> getRecepieDetails(@PathVariable Long recepieId){
+        LOGGER.info("Fing recepie details:{} ", recepieId);
+        RecepieDto recepieDto = recepieService.getRecepieDetails(recepieId);
         return new ResponseEntity<>(recepieDto, HttpStatus.OK);
     }
 
@@ -44,10 +54,19 @@ public class RecepieApiController {
     }
 
     @CrossOrigin
-    @PostMapping(value="/recepies/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value="/recepies/create",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> createRecepie(@RequestBody CreateRecepieDto createRecepieDto){
         LOGGER.info("Create recepie:{}", createRecepieDto);
         recepieService.save(createRecepieDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="/recepies/filter", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<SimpleRecepieDto>> filterRecepie(@RequestBody List<ProductDto> productDtoList){
+        LOGGER.info("Filtering recepies{}", productDtoList.toString());
+        List<SimpleRecepieDto> simpleRecepieDtoList = recepieService.filterRecepies(productDtoList);
+
+        return new ResponseEntity<>( simpleRecepieDtoList, HttpStatus.OK);
     }
 }

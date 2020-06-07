@@ -1,9 +1,5 @@
 package pl.edu.pwsztar.domain.dto;
 
-import javafx.util.Builder;
-
-import java.io.Serializable;
-
 public class ProductDto {
 
     private Long productId;

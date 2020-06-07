@@ -7,10 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.edu.pwsztar.domain.dto.CreateRecepieProductsDto;
 import pl.edu.pwsztar.domain.dto.RecepieProductsDto;
 import pl.edu.pwsztar.service.RecepieProductsService;
 
@@ -42,5 +40,13 @@ public class RecepieProductsApiContoller {
         LOGGER.info("searching products reqiured for all recepies ");
         List<RecepieProductsDto> recepieProductsDto = recepieProductsService.findAll();
         return new ResponseEntity<>(recepieProductsDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(path="/recepieProducts/create", consumes =  MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> createRecepieProducts(@RequestBody CreateRecepieProductsDto createRecepieProductsDto){
+        LOGGER.info("Creatnig new Recepie Product");
+        recepieProductsService.save(createRecepieProductsDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

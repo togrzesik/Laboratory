@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.CreateProductDto;
 import pl.edu.pwsztar.domain.dto.ProductDto;
+import pl.edu.pwsztar.domain.entity.Product;
 import pl.edu.pwsztar.service.ProductService;
 
 import java.util.List;
@@ -37,15 +38,31 @@ public class ProductApiController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/products", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> addProduct(@RequestBody CreateProductDto createProductDto) {
-        LOGGER.info("create product: {}", createProductDto);
-        productService.save(createProductDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping(value="/products/{productId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ProductDto> getProductDetails(@PathVariable Long productId){
+        LOGGER.info("Getting single product details");
+        ProductDto productDto = productService.getRequiredProductDetails(productId);
+        return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/products/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/products/barcode/{barcode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ProductDto> getProductDetailsBarcode(@PathVariable String barcode){
+        LOGGER.info("Getting single product details from barcode");
+        ProductDto productDto = productService.getProductFromBarcode(barcode);
+        return new ResponseEntity<>(productDto, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/products/create",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> addProduct(@RequestBody CreateProductDto createProductDto) {
+        LOGGER.info("create product: {}", createProductDto);
+        productService.save(createProductDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/products/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         LOGGER.info("delete product: {}", id);
 

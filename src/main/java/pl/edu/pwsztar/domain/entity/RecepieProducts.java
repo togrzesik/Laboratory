@@ -1,10 +1,11 @@
 package pl.edu.pwsztar.domain.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="recepie_products")
-public class RecepieProducts {
+public class RecepieProducts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,7 @@ public class RecepieProducts {
     private Long productId;
 
     @Column(name="amount")
-    private int amount;
+    private float amount;
 
     public RecepieProducts() {
     }
@@ -35,7 +36,7 @@ public class RecepieProducts {
         return productId;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -51,7 +52,7 @@ public class RecepieProducts {
         this.productId = productId;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 }

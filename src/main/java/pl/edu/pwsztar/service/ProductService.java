@@ -11,4 +11,6 @@ public interface ProductService {
     List<ProductDto> findAll();
     void save(CreateProductDto createProductDto);
     void deleteById(Long id);
+    ProductDto getRequiredProductDetails(Long productId);
+    ProductDto getProductFromBarcode(String barcode);
 }
