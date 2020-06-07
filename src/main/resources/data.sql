@@ -19,8 +19,8 @@ CREATE TABLE product (
 
 CREATE TABLE recepie_products(
     id INTEGER (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    recepie_id INTEGER(6) ,
-    product_id INTEGER(6) ,
+    recepie_id INTEGER(6),
+    product_id INTEGER(6),
     amount INTEGER(10)
 );
 
@@ -40,5 +40,3 @@ INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v1
 INSERT INTO recepie_products VALUES(1,1,2,3);
 INSERT INTO recepie_products VALUES(2,1,3,1);
 INSERT INTO recepie_products VALUES(3,1,5,1);
-
-INSERT INTO recepie_products VALUES(3,2,1,0.6);
