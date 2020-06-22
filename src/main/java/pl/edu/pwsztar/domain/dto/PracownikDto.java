@@ -1,6 +1,8 @@
 package pl.edu.pwsztar.domain.dto;
 
-public class PracownikDto {
+import java.io.Serializable;
+
+public class PracownikDto implements Serializable {
 
     private Integer id_pracownika;
     private String imie;

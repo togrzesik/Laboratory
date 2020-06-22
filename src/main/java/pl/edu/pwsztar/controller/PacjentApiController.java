@@ -14,7 +14,7 @@ import pl.edu.pwsztar.service.PacjentService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value="/api")
 public class PacjentApiController {
 

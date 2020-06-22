@@ -14,7 +14,7 @@ import pl.edu.pwsztar.service.PracownikService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value="/api")
 public class PracownikApiController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PracownikApiController.class);

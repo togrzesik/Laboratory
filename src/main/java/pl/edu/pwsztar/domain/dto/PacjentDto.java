@@ -1,6 +1,8 @@
 package pl.edu.pwsztar.domain.dto;
 
-public class PacjentDto {
+import java.io.Serializable;
+
+public class PacjentDto implements Serializable {
 
     private Integer id_pacjenta;
     private String imie;

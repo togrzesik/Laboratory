@@ -1,6 +1,8 @@
 package pl.edu.pwsztar.domain.dto;
 
-public class WynikiDto {
+import java.io.Serializable;
+
+public class WynikiDto implements Serializable {
 
     private Integer id_wynikow;
     private String choroby;

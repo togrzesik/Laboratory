@@ -14,7 +14,7 @@ import pl.edu.pwsztar.service.WynikiService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value="/api")
 public class WynikiApiContoller {
 
