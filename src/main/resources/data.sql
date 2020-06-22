@@ -1,44 +1,58 @@
-DROP TABLE IF EXISTS recepie;
-DROP TABLE IF EXISTS product;
-DROP TABLE IF EXISTS recepie_products;
+DROP TABLE IF EXISTS pacjent;
+DROP TABLE IF EXISTS pracownik;
+DROP TABLE IF EXISTS wyniki;
 
-CREATE TABLE recepie (
-recepie_id INTEGER(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100),
-image VARCHAR(300),
-description VARCHAR(4096)
+CREATE TABLE pacjent(
+  id_pacjenta serial NOT NULL,
+  imie character varying(40) NOT NULL,
+  nazwisko character varying(40) NOT NULL,
+  data_urodzenia date NOT NULL,
+  nr_telefonu character varying(9) NOT NULL,
+  pesel character varying(11) NOT NULL,
+  CONSTRAINT pkey PRIMARY KEY (id_pacjenta),
+  CONSTRAINT pesel CHECK (pesel::text ~ '\d{11}$'::text),
+  CONSTRAINT valid_phone_number CHECK (nr_telefonu::text ~ '\d{9}$'::text)
 );
 
-CREATE TABLE product (
-    product_id INTEGER(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR (100),
-    barcode VARCHAR(32),
-    amount INTEGER(10),
-    unit VARCHAR(15)
+CREATE TABLE pracownik(
+  id_pracownika serial NOT NULL,
+  imie character varying(40) NOT NULL,
+  nazwisko character varying(40) NOT NULL,
+  data_urodzenia date NOT NULL,
+  stanowisko character varying(40) NOT NULL,
+  CONSTRAINT pracownik_pkey PRIMARY KEY (id_pracownika),
+  CONSTRAINT chk_typ CHECK (stanowisko::text = ANY (ARRAY['recepcjonista'::character varying, 'laborant'::character varying, 'recepcjonistka'::character varying]::text[]))
 );
 
-CREATE TABLE recepie_products(
-    id INTEGER (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    recepie_id INTEGER(6),
-    product_id INTEGER(6),
-    amount FLOAT(10)
+CREATE TABLE wyniki(
+  id_wynikow serial NOT NULL,
+  choroby character varying NOT NULL,
+  pracownik_id integer NOT NULL,
+  pacjent_id integer NOT NULL,
+  CONSTRAINT wyniki_pkey PRIMARY KEY (id_wynikow),
+  CONSTRAINT pacjent_fk FOREIGN KEY (pacjent_id)
+      REFERENCES pacjent (id_pacjenta) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk FOREIGN KEY (pracownik_id)
+      REFERENCES laboratorium.pracownik (id_pracownika) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
--- ALTER TABLE recepie_products ADD CONSTRAINT recepie_id  FOREIGN KEY (recepie_id) REFERENCES recepie(recepie_id) ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ALTER TABLE recepie_products ADD CONSTRAINT product_id  FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+INSERT INTO pacjent VALUES (1,'Adam','Nowacki','20-05-1999','123456789','97042949384');
+INSERT INTO pacjent VALUES (3,'Jan','Kowalski','22-12-1990','123123123','12345678912');
+INSERT INTO pacjent VALUES (4,'Jan','Marcin','05-10-2000','123456123','76554312343');
+INSERT INTO pacjent VALUES (5,'Tomasz','Grzesik','04-06-1998','602329289','98060405174');
+INSERT INTO pacjent VALUES (6,'Piotr','Kowalski','01-01-1970' ,'123456789','12345678900');
 
-INSERT INTO product VALUES (1, 'Mąka ziemniaczana','5900766000281', 500, 'g' );
-INSERT INTO product VALUES (2, 'Jajko','5900766000000', 1, 'szt.' );
-INSERT INTO product VALUES (3, 'Pomidor','5900766000001', 1, 'szt.' );
-INSERT INTO product VALUES (4, 'Ryż biały','5902481010941',4, 'paczk.' );
-INSERT INTO product VALUES (5, 'Czosnek','5900977009534',1, 'ząb.' );
+INSERT INTO pracownik VALUES (1,'Adam','Nowacki','20-05-1999','recepcjonista');
+INSERT INTO pracownik VALUES (3,'asd','asd','12-12-2000','recepcjonista');
+INSERT INTO pracownik VALUES (4,'aleks','ciurej','09-04-2019','recepcjonista');
 
-INSERT INTO recepie VALUES (1,'Szakszuka','https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/jajka_w_pomidorach_01-1.jpg',
-                        'Przygotować pomidory: sparzyć, obrać ze skórki, pokroić na ćwiartki, wykroić szypułki, miąższ pokroić w kosteczkę. Na niedużą patelnię (około 20 cm średnicy) włożyć masło lub wlać oliwę oraz starty czosnek, chwilę podsmażyć. Pomidory włożyć na patelnię, doprawić solą, pieprzem i przyprawami. Wymieszać i intensywnie smażyć na większym ogniu przez około 4 minuty, już bez mieszania (wówczas pomidory odparują i zachowają swoją strukturę, jeśli będziemy mieszać zrobi się przecier). Do podsmażonych pomidorów wbić jajka, doprawić solą. Przykryć i gotować przez około 3 minuty lub do czasu aż białka jajek będą ścięte. Podawać ze świeżą bazylią i bagietką.');
-
-
-INSERT INTO recepie_products VALUES(1,1,2,3);
-INSERT INTO recepie_products VALUES(2,1,3,1);
-INSERT INTO recepie_products VALUES(3,1,5,1);
-
-INSERT INTO recepie_products VALUES(4,2,1,0.6);
+INSERT INTO wyniki VALUES (1,'',1,1)
+INSERT INTO wyniki VALUES (2,'OB, HGB, WBC, RBC',1,3)
+INSERT INTO wyniki VALUES (3,'Niedoczynnosc traczycy, Zaburzenia funkcji filtracyjnych nerek, Osteoporoza, Zaburzenia funkcji trzustki',1,3);
+INSERT INTO wyniki VALUES (4,'Hipoglikemia, Osteoporoza',1,3);
+INSERT INTO wyniki VALUES (5,'Hipoglikemia, Leukocytoza, Przewlekle choroby pluc lub nerek, Osteoporoza');
+INSERT INTO wyniki VALUES (6,'Hipoglikemia, Leukocytoza, Przewlekle choroby pluc lub nerek, Osteoporoza');
+INSERT INTO wyniki VALUES (7,'Hipoglikemia, Leukocytoza, Przewlekle choroby pluc lub nerek, Osteoporoza');
+INSERT INTO wyniki VALUES (8,'Hipoglikemia, Leukocytoza, Przewlekle choroby pluc lub nerek, Osteoporoza');
